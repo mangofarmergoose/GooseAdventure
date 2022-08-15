@@ -7,6 +7,7 @@ using namespace std;
 
 void InitGame();
 void DrawGame();
+void UpdateGame();
 
 struct GameState{
 	bool isGameOver;
@@ -24,6 +25,7 @@ int main(){
 	while(!WindowShouldClose()){
 		if(!gameState.isGameOver){
 			//Draw and Update
+			UpdateGame();
 			DrawGame();
 		}
 	}
@@ -40,8 +42,14 @@ void InitGame(){
 	
 	//Init Board
 	InitBoard();
+	InitPlayer();
+
 }
 
+void UpdateGame(){
+	CheckGrid();
+	Move();
+}
 
 void DrawGame(){
 	BeginDrawing();

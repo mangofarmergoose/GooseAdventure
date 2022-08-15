@@ -1,12 +1,13 @@
 IncludeRaylib = -lraylib
 IncludeCurrentPath = -I ./
+
 board.o: board.cpp board.hpp
-	g++ -c $< $(IncludeRaylib)
+	g++ -c $< $(IncludeRaylib) $(IncludeCurrentPath)
 
 main.o: main.cpp board.hpp
 	g++ -c $< $(IncludeRaylib) $(IncludeCurrentPath)
 
-prog:
+prog: board.o main.o
 	g++ *.o -o prog $(IncludeRaylib) $(IncludeCurrentPath)
 
 clean:
