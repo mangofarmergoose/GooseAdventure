@@ -1,6 +1,6 @@
 #ifndef BOARD
 #define BOARD
-
+#include <iostream>
 #include <raylib.h>
 
 using namespace std;
@@ -10,11 +10,13 @@ using namespace std;
 #define GRIDSIZE 30
 #define COLUMNS 23
 #define ROWS 17
+#define VERTICAL_OFFSET 5
+
 
 void InitBoard();
 void DrawBoard();
 void Move();
-void InitPlayer(); 
+void InitPlayer();
 void CheckGrid();
 
 enum Outcomes{
@@ -32,5 +34,10 @@ struct Grid{
 struct Player{
     Rectangle location;
 };
+
+
+static Grid board[COLUMNS][ROWS];
+static Player player;
+static Outcomes outcomes;
 
 #endif

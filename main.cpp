@@ -1,7 +1,7 @@
 #include <iostream>
 #include <raylib.h>
 //current files
-#include <board.hpp>
+#include "board.hpp"
 using namespace std;
 
 
