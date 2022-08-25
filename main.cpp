@@ -1,10 +1,9 @@
 #include <iostream>
-#include <raylib.h>
+#include "raylib.h"
 //current files
 #include "board.hpp"
+#include "card.hpp"
 using namespace std;
-
-
 void InitGame();
 void DrawGame();
 void UpdateGame();
@@ -40,15 +39,16 @@ void InitGame(){
 	gameState.isGameOver = false;
 	gameState.isPause = false;
 	
-	//Init Board
 	InitBoard();
+	cout << board[0][0].status << endl;
 	InitPlayer();
-
+	InitCard();
 }
 
 void UpdateGame(){
 	CheckGrid();
 	Move();
+	PlaceCard();
 }
 
 void DrawGame(){
