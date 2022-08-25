@@ -4,7 +4,7 @@
 #include "control.hpp"
 //Column: 0,1,21,22; Row: 0,1,2,14,15,16
 
-static CardTypes cardtype;
+static CardTypes cardtypes;
 static Cards card;
 
 void InitCard(){
@@ -46,8 +46,19 @@ void PlaceCard(){
 }
 
 void DrawCard(){
+    if(card.status == Selecting){
+        
+    }
 }
 
 void CheckCardGrid(){
-
+    for(int i=0; i<COLUMNS; ++i){
+        for(int j=0; j<ROWS; ++j){
+            if(board[i][j].status == Card && card.enterPlacement){
+                if(CheckCollisionPointRec(card.location, board[i][j].grid)){
+                    card.status = Selecting;
+                }
+            }
+        }
+    }
 }

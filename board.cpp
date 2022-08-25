@@ -47,34 +47,28 @@ void InitPlayer(){
 	
 }
 
-void CheckMovableGridStatus(int c, int r){
-	if (CheckCollisionRecs(player.location, board[c][r].grid))
-	{
-		board[c][r].status = Main;
-	}
-	else
-	{
-		board[c][r].status = Empty;
-	}
-} 
-
-void CheckCardGridStatus(int c, int r){
-}
-
 //Check Collision
-void CheckInnerGrid(){
-	for (int i=0; i<COLUMNS; ++i){
-		for (int j=0; j<ROWS; ++j){
-			if(i>=2 && i<=20 && j>=3 && j<=13){
-				//Inner Board
-				CheckMovableGridStatus(i, j);
+void CheckInnerGrid()
+{
+	for (int i = 0; i < COLUMNS; ++i)
+	{
+		for (int j = 0; j < ROWS; ++j)
+		{
+			if (board[i][j].status != Card)
+			{
+				// Inner Board
+				if (CheckCollisionRecs(player.location, board[i][j].grid))
+				{
+					board[i][j].status = Main;
+				}
+				else
+				{
+					board[i][j].status = Empty;
+				}
 			}
 		}
 	}
 }
-
-
-
 
 void Move(){
 	int rightBound = GetColumn(player.location.x + 35);

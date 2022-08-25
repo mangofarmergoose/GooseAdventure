@@ -15,6 +15,9 @@ struct Cards
     bool enterPlacement; //Enter card placement mode
 };
 
+extern CardTypes cardtypes;
+extern Cards card;
+
 void InitCard();
 void PlaceCard();
 void CheckCardGrid();
