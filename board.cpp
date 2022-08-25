@@ -1,9 +1,12 @@
 #include <iostream>
 #include "board.hpp"
-#include "card.hpp"
+
+
+Grid board[COLUMNS][ROWS];
+Outcomes outcomes;
+Player player;
 
 void InitBoard(){
-	Grid board[COLUMNS][ROWS];
 	//Init Board
 	for (int i=0; i< COLUMNS; ++i){
 		for (int j=0; j< ROWS; ++j){
@@ -56,21 +59,16 @@ void CheckMovableGridStatus(int c, int r){
 } 
 
 void CheckCardGridStatus(int c, int r){
-	if(CheckCollisionPointRec(card.location, board[c][r].grid)){
-	}
 }
 
 //Check Collision
-void CheckGrid(){
+void CheckInnerGrid(){
 	for (int i=0; i<COLUMNS; ++i){
 		for (int j=0; j<ROWS; ++j){
 			if(i>=2 && i<=20 && j>=3 && j<=13){
 				//Inner Board
 				CheckMovableGridStatus(i, j);
-			}else{
-				//Card Tiles
 			}
-
 		}
 	}
 }

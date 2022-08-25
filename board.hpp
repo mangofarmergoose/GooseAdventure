@@ -8,14 +8,13 @@ void InitBoard();
 void DrawBoard();
 void Move();
 void InitPlayer();
-void CheckGrid();
+void CheckInnerGrid();
 
 struct Grid{
     Rectangle grid;
     int status;
     
 };
-static Grid board[COLUMNS][ROWS];
 
 enum Outcomes{
     Empty = 0,
@@ -23,15 +22,13 @@ enum Outcomes{
     Mob = 2,
     Card = 3
 };
-static Outcomes outcomes;
 
 struct Player{
     Rectangle location;
 };
 
-static Player player;
-
-
-
+extern Grid board[COLUMNS][ROWS];
+extern Outcomes outcomes;
+extern Player player;
 
 #endif

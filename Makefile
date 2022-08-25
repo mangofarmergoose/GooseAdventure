@@ -4,10 +4,10 @@ IncludeCurrentPath = -I ./
 control.o: control.cpp control.hpp
 	clang++ -std=c++11 -c $< $(IncludeRaylib) $(IncludeCurrentPath)
 
-card.o: card.cpp control.hpp card.hpp
+board.o: board.cpp board.hpp control.hpp
 	clang++ -std=c++11 -c $< $(IncludeRaylib) $(IncludeCurrentPath)
 
-board.o: board.cpp board.hpp control.hpp
+card.o: card.cpp control.hpp card.hpp
 	clang++ -std=c++11 -c $< $(IncludeRaylib) $(IncludeCurrentPath)
 
 main.o: main.cpp board.hpp card.hpp

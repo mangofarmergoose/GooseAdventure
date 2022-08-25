@@ -6,6 +6,7 @@
 using namespace std;
 void InitGame();
 void DrawGame();
+void CheckGrid();
 void UpdateGame();
 
 struct GameState{
@@ -40,7 +41,6 @@ void InitGame(){
 	gameState.isPause = false;
 	
 	InitBoard();
-	cout << board[3][3].status << endl;
 	InitPlayer();
 	InitCard();
 }
@@ -58,4 +58,9 @@ void DrawGame(){
 			DrawBoard();
 		}
 	EndDrawing();
+}
+
+void CheckGrid(){
+	CheckInnerGrid();
+	CheckCardGrid();
 }
