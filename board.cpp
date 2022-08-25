@@ -3,13 +3,14 @@
 #include "card.hpp"
 
 void InitBoard(){
+	Grid board[COLUMNS][ROWS];
 	//Init Board
 	for (int i=0; i< COLUMNS; ++i){
 		for (int j=0; j< ROWS; ++j){
-			board[i][j].outerRect.height = GRIDSIZE;
-			board[i][j].outerRect.width = GRIDSIZE;
-			board[i][j].outerRect.x = i*(GRIDSIZE + 5);
-			board[i][j].outerRect.y = j*(GRIDSIZE + 5) + VERTICAL_OFFSET;
+			board[i][j].grid.height = GRIDSIZE;
+			board[i][j].grid.width = GRIDSIZE;
+			board[i][j].grid.x = i*(GRIDSIZE + 5);
+			board[i][j].grid.y = j*(GRIDSIZE + 5) + VERTICAL_OFFSET;
 			if(i<2 || i>20 || j<3 || j>13){
 				board[i][j].status = Card;
 			}else{
@@ -17,17 +18,18 @@ void InitBoard(){
 			}
 		}
 	}
+	std::cout << board[0][0].status << std::endl;
 }
 
 void DrawBoard(){
 	for (int i=0; i< COLUMNS; ++i){
 		for (int j=0; j< ROWS; ++j){
 			if(board[i][j].status == Empty){
-				DrawRectangleRec(board[i][j].outerRect, GRAY);	
+				DrawRectangleRec(board[i][j].grid, GRAY);	
 			}else if(board[i][j].status == Main){
-				DrawRectangleRec(board[i][j].outerRect, RED);
+				DrawRectangleRec(board[i][j].grid, RED);
 			}else if(board[i][j].status == Card){
-				DrawRectangleRec(board[i][j].outerRect, DARKGRAY);
+				DrawRectangleRec(board[i][j].grid, DARKGRAY);
 			}
 		}
 	}
@@ -43,7 +45,7 @@ void InitPlayer(){
 }
 
 void CheckMovableGridStatus(int c, int r){
-	if (CheckCollisionRecs(player.location, board[c][r].outerRect))
+	if (CheckCollisionRecs(player.location, board[c][r].grid))
 	{
 		board[c][r].status = Main;
 	}
@@ -54,7 +56,7 @@ void CheckMovableGridStatus(int c, int r){
 } 
 
 void CheckCardGridStatus(int c, int r){
-	if(CheckCollisionPointRec(card.location, board[c][r].outerRect)){
+	if(CheckCollisionPointRec(card.location, board[c][r].grid)){
 	}
 }
 

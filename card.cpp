@@ -24,7 +24,6 @@ void PlaceCard(){
         if(IsKeyPressed(KEY_D)) {
             card.location.x += 35;
             std::cout << card.location.x << std::endl;
-            std::cout << board[GetColumn(card.location.x)][GetRow(card.location.y)].status << std::endl;
         }
         if(IsKeyPressed(KEY_A)){
             card.location.x -= 35;

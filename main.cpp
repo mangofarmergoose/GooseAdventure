@@ -40,7 +40,7 @@ void InitGame(){
 	gameState.isPause = false;
 	
 	InitBoard();
-	cout << board[0][0].status << endl;
+	cout << board[3][3].status << endl;
 	InitPlayer();
 	InitCard();
 }
