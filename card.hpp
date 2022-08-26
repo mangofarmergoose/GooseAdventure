@@ -4,6 +4,7 @@ struct Cards
 {
     Vector2 location;
     bool enterPlacement; //Enter card placement mode
+    bool isSelecting;
 };
 
 extern Cards card;

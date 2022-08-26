@@ -16,6 +16,7 @@ struct Grid{
     int status;
     int card_status;
     Color color;
+    bool isSelecting;
 };
 
 enum Outcomes{

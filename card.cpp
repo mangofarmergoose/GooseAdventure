@@ -11,6 +11,8 @@ Cards card;
 void InitCard(){
     card.location.x = 10;
     card.location.y = 10;
+    card.enterPlacement = false;
+    card.isSelecting = false;
 }
 
 void PlaceCard(){
@@ -31,23 +33,18 @@ void PlaceCard(){
 
         if(IsKeyPressed(KEY_D) && board[NextRightX][GetRow(card.location.y)].status == Card) {
             card.location.x += 35;
-            std::cout << GetColumn(card.location.x)<< " "<< GetRow(card.location.y) <<std::endl;
         }
 
         if(IsKeyPressed(KEY_A) && board[NextLeftX][GetRow(card.location.y)].status == Card){
             card.location.x -= 35;
-            
-            std::cout << GetColumn(card.location.x)<< " "<< GetRow(card.location.y) <<std::endl;
-
         }
+
         if(IsKeyPressed(KEY_W) && board[GetColumn(card.location.x)][NextUpY].status == Card){
             card.location.y -= 35;
-            std::cout << GetColumn(card.location.x)<< " "<< GetRow(card.location.y) <<std::endl;
         }
 
         if(IsKeyPressed(KEY_S) && board[GetColumn(card.location.x)][NextDownY].status == Card){
             card.location.y += 35;
-            std::cout << GetColumn(card.location.x)<< " "<< GetRow(card.location.y) <<std::endl;
         }
     }
 }
@@ -67,12 +64,25 @@ void CheckCardGrid(){
         for(int j=0; j<ROWS; ++j){
 
             if(board[i][j].status == Card && card.enterPlacement){
+
                 int c = GetColumn(card.location.x);
                 int r = GetRow(card.location.y);
 
+
+
                 if(CheckCollisionPointRec(card.location, board[i][j].grid)){
+                    std::cout << "test" << std::endl;
                     board[c][r].card_status = Selecting;
                     board[c][r].color = GREEN;
+                }else if(IsKeyPressed(KEY_Z)){
+                    board[c][r].card_status = Barrack;
+                    board[c][r].color = BROWN;
+                }else if(IsKeyPressed((KEY_X))){
+                    board[c][r].card_status = Forge;
+                    board[c][r].color = LIME;
+                }else if(IsKeyPressed((KEY_C))){
+                    board[c][r].card_status = Shelter;
+                    board[c][r].color = ORANGE;
                 }
 
                 //Remove selection trail. Turn card tile to blue while selecting.
