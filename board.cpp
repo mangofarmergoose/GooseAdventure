@@ -1,4 +1,5 @@
 #include <iostream>
+#include <raylib.h>
 #include "board.hpp"
 
 
@@ -16,8 +17,10 @@ void InitBoard(){
 			board[i][j].grid.y = j*(GRIDSIZE + 5) + VERTICAL_OFFSET;
 			if(i<2 || i>20 || j<3 || j>13){
 				board[i][j].status = Card;
+				board[i][j].color = DARKGRAY;
 			}else{
 				board[i][j].status = Empty;
+				board[i][j].color = GRAY;
 			}
 		}
 	}
@@ -27,13 +30,8 @@ void InitBoard(){
 void DrawBoard(){
 	for (int i=0; i< COLUMNS; ++i){
 		for (int j=0; j< ROWS; ++j){
-			if(board[i][j].status == Empty){
-				DrawRectangleRec(board[i][j].grid, GRAY);	
-			}else if(board[i][j].status == Main){
-				DrawRectangleRec(board[i][j].grid, RED);
-			}else if(board[i][j].status == Card){
-				DrawRectangleRec(board[i][j].grid, DARKGRAY);
-			}
+			if(board[i][j].status != Card)
+				DrawRectangleRec(board[i][j].grid, board[i][j].color);
 		}
 	}
 }
@@ -60,10 +58,12 @@ void CheckInnerGrid()
 				if (CheckCollisionRecs(player.location, board[i][j].grid))
 				{
 					board[i][j].status = Main;
+					board[i][j].color = RED;
 				}
 				else
 				{
 					board[i][j].status = Empty;
+					board[i][j].color = GRAY;
 				}
 			}
 		}

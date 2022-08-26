@@ -1,4 +1,5 @@
 #include <iostream>
+#include <raylib.h>
 #include "board.hpp"
 #include "card.hpp"
 #include "control.hpp"
@@ -8,7 +9,6 @@ CardTypes cardtypes;
 Cards card;
 
 void InitCard(){
-    card.status = Selecting;
     card.location.x = 10;
     card.location.y = 10;
 }
@@ -53,18 +53,34 @@ void PlaceCard(){
 }
 
 void DrawCard(){
-    if(card.status == Selecting){
-        
+    for (int c=0; c<COLUMNS; ++c){
+        for (int r=0; r<ROWS; ++r){
+            if(board[c][r].status == Card){
+                DrawRectangleRec(board[c][r].grid, board[c][r].color);
+            }
+        }
     }
 }
 
 void CheckCardGrid(){
     for(int i=0; i<COLUMNS; ++i){
         for(int j=0; j<ROWS; ++j){
+
             if(board[i][j].status == Card && card.enterPlacement){
+                int c = GetColumn(card.location.x);
+                int r = GetRow(card.location.y);
+
                 if(CheckCollisionPointRec(card.location, board[i][j].grid)){
-                    card.status = Selecting;
+                    board[c][r].card_status = Selecting;
+                    board[c][r].color = GREEN;
                 }
+
+                //Remove selection trail. Turn card tile to blue while selecting.
+                else{
+                    board[i][j].card_status = Default;
+                    board[i][j].color = BLUE;
+                }
+
             }
         }
     }

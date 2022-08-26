@@ -47,6 +47,7 @@ void InitGame(){
 
 void UpdateGame(){
 	CheckGrid();
+	CheckCardGrid();
 	Move();
 	PlaceCard();
 }
@@ -56,6 +57,7 @@ void DrawGame(){
 		ClearBackground(BLACK);
 		if(!gameState.isGameOver){
 			DrawBoard();
+			DrawCard();
 		}
 	EndDrawing();
 }
